@@ -11,12 +11,17 @@
 		$scope.food = "";
 
 		function clean(dirtyArray) {
+			var newArray = [];
+			var countSpaces = 0;
 			for (var i=0; i<dirtyArray.length-1; i++) {
 				if (dirtyArray[i] == "") {
-					dirtyArray = dirtyArray.splice(i,1)
+					countSpaces++
+				} else {
+					newArray.push(dirtyArray[i])
 				}
 			};
-			return dirtyArray;
+			return newArray;
+			console.log(countSpaces)
 		}
 
 		$scope.count = function () {
