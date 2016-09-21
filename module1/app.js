@@ -9,19 +9,24 @@
 	function CountController($scope) {	
 		$scope.message = "";
 		$scope.food = "";
+		$scope.type = "";
+		$scope.ignoredspaces = "";
+		$scope.showTotals = false;
+		$scope.showMessages= false;
 
 		function clean(dirtyArray) {
+			$scope.totalspaces= 0;
 			var newArray = [];
 			var countSpaces = 0;
-			for (var i=0; i<dirtyArray.length-1; i++) {
+			for (var i=0; i<dirtyArray.length; i++) {
 				if (dirtyArray[i] == "") {
-					countSpaces++
+					$scope.totalspaces++
+					$scope.ignoredspaces = 'Remember are NOT considering spaces in your food list.'
 				} else {
 					newArray.push(dirtyArray[i])
 				}
 			};
-			return newArray;
-			console.log(countSpaces)
+			return(newArray);
 		}
 
 		$scope.count = function () {
@@ -29,15 +34,22 @@
 				var coma = ',';
 				var arrayOfStrings = $scope.food.split(coma);
 				var arrayOfStrings = clean(arrayOfStrings);
+				$scope.totalitems = arrayOfStrings.length;
+				$scope.showTotals = true;
+				$scope.showMessages = true;
 				if (arrayOfStrings.length <= 3) {
-					$scope.message = "Enjoy!"
+					$scope.message = "Enjoy!";
+					$scope.type = 'Ignored'
 				} else {
-					$scope.message = "Too much!"
+					$scope.message = "Too much!";
+					$scope.type = 'Error'
 				}
-				console.log(arrayOfStrings);
-				console.log(arrayOfStrings.length)
 			} else {
-				$scope.message = "Please enter data first"
+				$scope.message = "Please enter data first";
+				$scope.type = 'Error';
+				$scope.show = true;
+				$scope.showMessages = true;
+				$scope.totalitems = 0;
 			};	
 		};
 		
