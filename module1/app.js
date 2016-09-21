@@ -18,7 +18,7 @@
 			$scope.totalspaces= 0;
 			var newArray = [];
 			var countSpaces = 0;
-			for (var i=0; i<dirtyArray.length; i++) {
+			for (var i=0; i<dirtyArray.length-1; i++) {
 				if (dirtyArray[i] == "") {
 					$scope.totalspaces++
 					$scope.ignoredspaces = 'Remember are NOT considering spaces in your food list.'
