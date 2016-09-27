@@ -45,8 +45,8 @@
 				</tr>
 			</tbody>
 		 </table>
-     <div class="emptyMessage" ng-if="toBuyList.shoppingListEmpty">
-			 <span ng-if="toBuyList.shoppingListEmpty">Everything is bought!</span>
+     <div class="emptyMessage" ng-model="toBuyList.shoppingList">
+			 <span ng-if="toBuyList.shoppingList.length <= 0">Everything is bought!</span>
 		 </div>
     </div>
 
@@ -65,8 +65,8 @@
 				</tr>
 			</tbody>
 		 </table>
-     <div class="emptyMessage" ng-model="boughtList">
-			 <span ng-if="boughtList.boughtListEmpty">Nothing bought yet.</span>
+     <div class="emptyMessage" ng-model="boughtList.items">
+			 <span ng-if="boughtList.items.length <= 0">Nothing bought yet.</span>
 	 	 </div>
     </div>
   </div>

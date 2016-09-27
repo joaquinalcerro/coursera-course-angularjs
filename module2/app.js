@@ -14,10 +14,8 @@
 		toBuyList.buyItem = function (item) {
 			ShoppingListService.addItemBoughtList(item.name, item.quantity);
 			ShoppingListService.deleteItemShoppingList(item.name);
-			toBuyList.shoppingListEmpty = ShoppingListService.isShoppingListEmpty();
 		}
 
-		toBuyList.shoppingListEmpty = ShoppingListService.isShoppingListEmpty();
 		toBuyList.shoppingList = ShoppingListService.getShoppingListItems();
 			
 	}
@@ -27,7 +25,6 @@
 	function AlreadyBoughtListController($scope, ShoppingListService) {
 		var boughtList = this;
 
-		boughtList.boughtListEmpty = true;
 		boughtList.items = ShoppingListService.getBoughtListItems();
 
 	}
@@ -67,22 +64,6 @@
 
 		service.getBoughtListItems = function () {
 			return boughtListItems
-		};
-
-		service.isShoppingListEmpty = function () {
-			if (shoppingListItems.length > 0) {
-				return false;
-			} else {
-				return true;
-			}
-		};
-
-		service.isBoughtListEmpty = function () {
-			if (boughtListItems.length > 0) {
-				return false;
-			} else {
-				return true;
-			}
 		};
 
 	};
