@@ -4,32 +4,32 @@
 	angular.module('ShoppingList', [])
 	.controller('ToBuyListController', ToBuyListController)
 	.controller('AlreadyBoughtListController', AlreadyBoughtListController)
-	.service('ShoppingListService', ShoppingListService);
+	.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
 
-	ToBuyListController.$inject = ['$scope', 'ShoppingListService'];
-	function ToBuyListController($scope, ShoppingListService) {
+	ToBuyListController.$inject = ['ShoppingListCheckOffService'];
+	function ToBuyListController(ShoppingListCheckOffService) {
 		var toBuyList = this;
 
 		toBuyList.buyItem = function (item) {
-			ShoppingListService.addItemBoughtList(item.name, item.quantity);
-			ShoppingListService.deleteItemShoppingList(item.name);
+			ShoppingListCheckOffService.addItemBoughtList(item.name, item.quantity);
+			ShoppingListCheckOffService.deleteItemShoppingList(item.name);
 		}
 
-		toBuyList.shoppingList = ShoppingListService.getShoppingListItems();
+		toBuyList.shoppingList = ShoppingListCheckOffService.getShoppingListItems();
 			
 	}
 
 
-	AlreadyBoughtListController.$inject = ['$scope', 'ShoppingListService'];
-	function AlreadyBoughtListController($scope, ShoppingListService) {
+	AlreadyBoughtListController.$inject = ['ShoppingListCheckOffService'];
+	function AlreadyBoughtListController(ShoppingListCheckOffService) {
 		var boughtList = this;
 
-		boughtList.items = ShoppingListService.getBoughtListItems();
+		boughtList.items = ShoppingListCheckOffService.getBoughtListItems();
 
 	}
 
-	function ShoppingListService() {
+	function ShoppingListCheckOffService() {
 		var service = this;
 
 		var shoppingListItems = [
