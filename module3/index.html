@@ -23,13 +23,14 @@
         </div>
       </div>
       <div class="row">
-        <p>List of items found</p>
+				<p>Found {{ narrowController.items.length }} menu options</p>
         <table class="table table-condessed table-striped">
           <header>
             <tr>
               <th>ID</th>
               <th>Short Name</th>
               <th>Name</th>
+              <th>Description</th>
               <th>Action</th>
             </tr>
           </header>
@@ -38,6 +39,7 @@
               <td> {{ item.id }} </td>
               <td> {{ item.short_name }} </td>
               <td> {{ item.name }} </td>
+              <td> {{ item.description }} </td>
               <td> <button class="btn btn-sm btn-primary" ng-click="narrowController.removeItem(item.id)">Remove</button> </td>
             </tr>
           </body>

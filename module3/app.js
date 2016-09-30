@@ -14,19 +14,33 @@
 
 			narrowController.getItems = function (query) {
 				narrowController.apiResponse = MenuSearchService.getMatchedMenuItems(query);
-				//narrowController.items = apiResponse.data;
-				console.log(narrowController.apiResponse);
 				narrowController.apiResponse.then(function (response) {
-					narrowController.items = response.data.menu_items
+					narrowController.items = [];
+					var itemsFound = [];
+					for(var i=0; i<response.data.menu_items.length; i++) {
+						var item = response.data.menu_items[i];
+						var itemDesc = response.data.menu_items[i].description.toLowerCase();
+						if (itemDesc.toLowerCase().indexOf(query.toLowerCase()) >= 1) {
+							itemsFound.push(item);
+						}
+					}
+					narrowController.items = itemsFound;
 				})
+				.catch(function (eror) {
+					console.log('Terrible error');
+				});
+			}	
 
+			narrowController.removeItem = function (id) {
+				var index = -1;
+				for (var i=0; i<narrowController.items.length; i++) {
+					if (narrowController.items[i].id === id) {
+						index = i;
+						break;
+					}
+				};
+				narrowController.items.splice(index, 1);
 			}
-
-
-			
-
-
-
 	}	
 
 	MenuSearchService.$inject = ['$http', 'APIbasePath'];
@@ -42,6 +56,7 @@
 			});
 
 			return response;
+
 			
 		}			
 
