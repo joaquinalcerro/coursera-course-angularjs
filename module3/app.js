@@ -11,24 +11,31 @@
 	function NarrowItDownController(MenuSearchService) {
 			var narrowController = this;
 			narrowController.searchText = "";
+			narrowController.emptyQuery = false;
 
 			narrowController.getItems = function (query) {
-				narrowController.apiResponse = MenuSearchService.getMatchedMenuItems(query);
-				narrowController.apiResponse.then(function (response) {
-					narrowController.items = [];
-					var itemsFound = [];
-					for(var i=0; i<response.data.menu_items.length; i++) {
-						var item = response.data.menu_items[i];
-						var itemDesc = response.data.menu_items[i].description.toLowerCase();
-						if (itemDesc.toLowerCase().indexOf(query.toLowerCase()) >= 1) {
-							itemsFound.push(item);
+				if (query != "") {
+					narrowController.emptyQuery = false;
+					narrowController.apiResponse = MenuSearchService.getMatchedMenuItems(query);
+					narrowController.apiResponse.then(function (response) {
+						narrowController.items = [];
+						var itemsFound = [];
+						for(var i=0; i<response.data.menu_items.length; i++) {
+							var item = response.data.menu_items[i];
+							var itemDesc = response.data.menu_items[i].description.toLowerCase();
+							if (itemDesc.toLowerCase().indexOf(query.toLowerCase()) >= 1) {
+								itemsFound.push(item);
+							}
 						}
-					}
-					narrowController.items = itemsFound;
-				})
-				.catch(function (eror) {
-					console.log('Terrible error');
-				});
+						narrowController.items = itemsFound;
+						if (narrowController.items.length <= 0) {narrowController.emptyQuery = true};
+					})
+					.catch(function (eror) {
+						console.log('Terrible error');
+					});
+				} else {
+					narrowController.emptyQuery = true;
+				}
 			}	
 
 			narrowController.removeItem = function (id) {

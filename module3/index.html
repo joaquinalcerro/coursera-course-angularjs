@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/master.css">
   </head>
   <body>
    <div class="container">
@@ -22,12 +23,14 @@
           <button class="btn btn-primary" ng-click="narrowController.getItems(narrowController.searchText)">Narrow It Down For Me!</button>
         </div>
       </div>
-      <div class="row">
-				<p>Found {{ narrowController.items.length }} menu options</p>
+			<div class="notification-danger" ng-if="narrowController.emptyQuery">
+				Nothing found!
+			</div>
+			<div class="row" ng-if="narrowController.items.length > 0 ">
+				<p class="notification-info">Found {{ narrowController.items.length }} menu options</p>
         <table class="table table-condessed table-striped">
           <header>
             <tr>
-              <th>ID</th>
               <th>Short Name</th>
               <th>Name</th>
               <th>Description</th>
@@ -36,11 +39,10 @@
           </header>
           <body>
             <tr ng-repeat="item in narrowController.items">
-              <td> {{ item.id }} </td>
               <td> {{ item.short_name }} </td>
               <td> {{ item.name }} </td>
               <td> {{ item.description }} </td>
-              <td> <button class="btn btn-sm btn-primary" ng-click="narrowController.removeItem(item.id)">Remove</button> </td>
+              <td> <button class="btn btn-sm btn-primary" ng-click="narrowController.removeItem(item.id)">Don't want this one!</button> </td>
             </tr>
           </body>
         </table>
