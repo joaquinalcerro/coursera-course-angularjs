@@ -38,14 +38,7 @@
 				}
 			}	
 
-			narrowController.removeItem = function (id) {
-				var index = -1;
-				for (var i=0; i<narrowController.items.length; i++) {
-					if (narrowController.items[i].id === id) {
-						index = i;
-						break;
-					}
-				};
+			narrowController.removeItem = function (index) {
 				narrowController.items.splice(index, 1);
 			}
 	}	

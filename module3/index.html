@@ -42,7 +42,7 @@
               <td> {{ item.short_name }} </td>
               <td> {{ item.name }} </td>
               <td> {{ item.description }} </td>
-              <td> <button class="btn btn-sm btn-primary" ng-click="narrowController.removeItem(item.id)">Don't want this one!</button> </td>
+              <td> <button class="btn btn-sm btn-primary" ng-click="narrowController.removeItem($index)">Don't want this one!</button> </td>
             </tr>
           </body>
         </table>
