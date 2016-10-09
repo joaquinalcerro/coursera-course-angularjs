@@ -1,0 +1,15 @@
+.form-group {
+	margin-bottom: 0px;
+}
+
+.notification-danger {
+	color: red;
+	font-size: 1.2em;
+	margin-top: 5px;
+}
+
+.notification-info {
+	color: blue;
+	font-size: 1.2em;
+	margin-top: 5px;
+}
