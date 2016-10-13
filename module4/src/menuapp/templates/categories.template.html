@@ -11,10 +11,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="category in menuController.categories">
-        <td> {{ category.short_name }} </td>
-        <td> {{ category.name }} </td>
-        <td> {{ category.special_instructions }} </td>
-        <td> <button class="btn btn-primary btn-sm" ui-sref="items({{ category.short_name }})">Items</button> </td>
+				<category category="category"></category>
       </tr>
     </tbody>
   </table

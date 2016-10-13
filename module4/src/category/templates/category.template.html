@@ -1,1 +1,7 @@
+<!--
 <p>This is tha content of a single category</p>
+-->
+<td> {{ category.short_name }} </td>
+<td> {{ category.name }} </td>
+<td> {{ category.special_instructions }} </td>
+<td> <button class="btn btn-primary btn-sm" ui-sref="items({{ category.short_name }})">Items</button> </td>
